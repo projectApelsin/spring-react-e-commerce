@@ -1,0 +1,34 @@
+spring:
+  mail:
+    host: localhost
+    port: 25
+
+  application:
+    name: coursework
+  jpa:
+    database: POSTGRESQL
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+  datasource:
+    url: jdbc:postgresql://localhost:5432/e_commerce_store
+    username: postgres
+    password: 123456
+    driverClassName: org.postgresql.Driver
+encryption:
+  salt:
+    rounds: 10
+jwt:
+  algorithm:
+    key: SuperSecureSecretKey
+  issuer: eCommerce
+  expiration: 604800
+
+email:
+  from: no-reply@ecommerce.com
+app:
+  frontend:
+    url: http:/ecommerce.com
