@@ -1,0 +1,120 @@
+.productGroup {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    justify-content: center;
+    align-items: flex-start; /* Центрирование по вертикали, если нужно */
+
+    padding: 10px 300px; /* Отступы для содержимого */
+    box-sizing: border-box;
+}
+
+/* Остальные стили остаются без изменений */
+.productCard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin: 10px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+      background-color: var(--color-grey-primary);
+}
+
+.productCard:hover {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.productImageWrapper {
+    cursor: pointer;
+    width: 100%;
+    padding-top: 75%; /* 4:3 Aspect Ratio */
+    position: relative;
+    overflow: hidden;
+}
+
+.productImage {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.productCard__content {
+    text-align: center;
+    padding: 10px 0;
+}
+
+.productName {
+    cursor: pointer;
+    font-size: 1.2em;
+    margin: 0;
+    transition: color 0.3s ease;
+}
+
+.productName:hover {
+    color: #007bff;
+}
+
+.productPrice {
+    font-size: 1.1em;
+    color: #333;
+    margin: 10px 0;
+}
+
+.productDesc {
+    font-size: 0.9em;
+    color: #666;
+    margin: 10px 0;
+}
+
+.productCard__cart {
+    cursor: pointer;
+    font-size: 1.5em;
+    color: #007bff;
+    transition: color 0.3s ease;
+}
+
+.productCard__cart:hover {
+    color: #0056b3;
+}
+
+
+
+.productCard__content {
+    width: 60%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    gap: 5px;
+  }
+  
+  .productName {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 0;
+  }
+  
+  .productPrice {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #28a745;
+  }
+  
+  .productCard__cart{
+    position: top;
+    right: 0;
+    margin: 1rem;
+    font-size: 1.5rem;
+    transition: 0.2s;
+    cursor: pointer;
+  }
+  
+
+  

@@ -1,0 +1,34 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600&display=swap');
+
+:root {
+  --color-grey-primary: #f0f0f0;
+  --color-yellow-primary: goldenrod;   
+  --color-orange-primary: darkorange;
+  --color-green-primary: mediumseagreen;
+}
+
+section {
+  padding: 50px 0;
+}
+
+.form-check-input:checked {
+  background-color: #28a745;
+  border-color: #28a745;
+}
+
+.form-check-input:focus {
+  box-shadow: 0 0 0 0.25rem rgba(40, 167, 69, 0.25);
+}
+
+.form-control:focus {
+  box-shadow: 0 0 0 0.25rem rgba(40, 167, 69, 0.25);
+  border-color: #28a745;
+}
+
+.navbar-nav .dropdown-menu {
+  right: 0;
+  left: auto;
+}
+
+
+
