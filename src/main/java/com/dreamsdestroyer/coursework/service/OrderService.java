@@ -7,6 +7,7 @@ import com.dreamsdestroyer.coursework.model.repository.*;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -20,14 +21,20 @@ public class OrderService {
     private AddressRepository addressRepository;
     private ProductRepository productRepository;
     private PurchaseOrderQuantitiesRepository purchaseOrderQuantitiesRepository;
+    private final ShoppingCartRepository shoppingCartRepository;
+    private final InventoryRepository inventoryRepository;
 
 
-    public OrderService(PurchaseOrderRepository purchaseOrderRepository, LocalUserRepository localUserRepository, AddressRepository addressRepository, ProductRepository productRepository, PurchaseOrderQuantitiesRepository purchaseOrderQuantitiesRepository) {
+    public OrderService(PurchaseOrderRepository purchaseOrderRepository, LocalUserRepository localUserRepository, AddressRepository addressRepository, ProductRepository productRepository, PurchaseOrderQuantitiesRepository purchaseOrderQuantitiesRepository,
+                        ShoppingCartRepository shoppingCartRepository,
+                        InventoryRepository inventoryRepository) {
         this.purchaseOrderRepository = purchaseOrderRepository;
         this.localUserRepository = localUserRepository;
         this.addressRepository = addressRepository;
         this.productRepository = productRepository;
         this.purchaseOrderQuantitiesRepository = purchaseOrderQuantitiesRepository;
+        this.shoppingCartRepository = shoppingCartRepository;
+        this.inventoryRepository = inventoryRepository;
     }
 
     public List<PurchaseOrder> getOrders(Long id){
@@ -37,27 +44,59 @@ public class OrderService {
 
 
     @Transactional
-    public PurchaseOrder createOrder(OrderRequest orderRequest){
-        System.out.println("Looking for user with ID: " + orderRequest.getUserId());
+    public PurchaseOrder createOrder(OrderRequest orderRequest) {
+
+        System.out.println("Received OrderRequest: " + orderRequest);
+        System.out.println("UserId: " + orderRequest.getUserId());
+        System.out.println("AddressId: " + (orderRequest.getAddress() != null ? orderRequest.getAddress().getId() : "null"));
+
         LocalUser user = localUserRepository.findById(orderRequest.getUserId())
                 .orElseThrow(() -> new ResourceNotFoundException("User not found"));
 
-        System.out.println("User found: " + user.getUsername());
-        System.out.println("Looking for address with ID: " + orderRequest.getAddress().getId());
         Address address = addressRepository.findById(orderRequest.getAddress().getId())
                 .orElseThrow(() -> new ResourceNotFoundException("Address not found"));
-        System.out.println("Address found: " + orderRequest.getAddress().getId());
 
         PurchaseOrder purchaseOrder = new PurchaseOrder();
         purchaseOrder.setUser(user);
         purchaseOrder.setAddress(address);
-        System.out.println("test");
+
         // Save the purchase order first to get its ID
         purchaseOrder = purchaseOrderRepository.save(purchaseOrder);
 
-        PurchaseOrder finalPurchaseOrder = purchaseOrder;
-        System.out.println("test2");
-        List<PurchaseOrderQuantities> quantities = orderRequest.getQuantities().stream()
+        // Get items from the shopping cart
+        ShoppingCart shoppingCart = user.getShoppingCart();
+        List<PurchaseOrderQuantities> quantities = new ArrayList<>(shoppingCart.getShoppingCartItems().size());
+
+        // Convert ShoppingCartItems to PurchaseOrderQuantities
+        for (ShoppingCartItem cartItem : shoppingCart.getShoppingCartItems()) {
+            PurchaseOrderQuantities purchaseOrderQuantity = new PurchaseOrderQuantities();
+            purchaseOrderQuantity.setProduct(cartItem.getProduct());
+            purchaseOrderQuantity.setQuantity(cartItem.getQuantity());
+            purchaseOrderQuantity.setPurchaseOrder(purchaseOrder);
+            quantities.add(purchaseOrderQuantity);
+
+            // Decrease inventory
+            inventoryRepository.findByProduct(cartItem.getProduct()).ifPresent(inventory -> {
+                inventory.decreaseQuantity(cartItem.getQuantity());
+                inventoryRepository.save(inventory);
+            });
+        }
+
+        // Save all quantities with the purchase order ID
+        purchaseOrderQuantitiesRepository.saveAll(quantities);
+
+        // Clear the shopping cart and save it
+        shoppingCart.getShoppingCartItems().clear();
+        shoppingCartRepository.save(shoppingCart);
+
+        // Set the quantities in the purchase order and return it
+        purchaseOrder.setQuantities(quantities);
+        purchaseOrderRepository.save(purchaseOrder);
+
+        return purchaseOrder;
+    }
+}
+        /*List<PurchaseOrderQuantities> quantities = orderRequest.getQuantities().stream()
                 .map(orderQuantities -> {
                     System.out.println("product id: ");
                     Optional<Product> product = productRepository.findById(orderQuantities.getProductId());
@@ -68,11 +107,4 @@ public class OrderService {
                     quantity.setPurchaseOrder(finalPurchaseOrder);
                     return quantity;
                 }).collect(Collectors.toList());
-
-        purchaseOrderQuantitiesRepository.saveAll(quantities);
-
-        purchaseOrder.setQuantities(quantities);
-
-        return purchaseOrder;
-    }
-}
+*/

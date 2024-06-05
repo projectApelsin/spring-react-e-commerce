@@ -16,11 +16,11 @@ public class CategoryService {
         this.categoryRepository = categoryRepository;
     }
 
-    public Category getAllProductsCategory(Long id){
+    public Category getAllProductsCategory(Long id) {
         return categoryRepository.findCategoryById(id);
     }
 
-    public List<Category> getAllCategory(){
+    public List<Category> getAllCategory() {
         return categoryRepository.findAll();
-   }
+    }
 }

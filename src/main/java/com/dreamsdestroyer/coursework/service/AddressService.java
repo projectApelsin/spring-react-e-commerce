@@ -14,7 +14,7 @@ public class AddressService {
         this.addressRepository = addressRepository;
     }
 
-    public Address saveAddress(Address address){
+    public Address saveAddress(Address address) {
         return addressRepository.save(address);
     }
 

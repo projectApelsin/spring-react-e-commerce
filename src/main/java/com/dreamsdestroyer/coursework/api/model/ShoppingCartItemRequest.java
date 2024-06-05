@@ -5,8 +5,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class OrderItem {
-    private Long productId;
+public class ShoppingCartItemRequest {
+    private Long id;
     private int quantity;
-    private Long userId;
 }

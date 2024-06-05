@@ -8,24 +8,23 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Table(name = "purchase_order_quantities")
-public class PurchaseOrderQuantities {
+@Table(name = "shopping_cart_item")
+public class ShoppingCartItem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "id", nullable = false)
     private Long id;
-
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "product_id")
-
-    private Product product;
-    @Column(name = "quantity")
-    private Integer quantity;
-
     @JsonIgnore
     @ManyToOne(optional = false)
-    @JoinColumn(name = "purchase_order_id")
-    private PurchaseOrder purchaseOrder;
+    @JoinColumn(name = "shopping_cart_id", nullable = false)
+    private ShoppingCart shoppingCart;
 
+
+    @Column(name = "quantity", nullable = false)
+    private Integer quantity;
+
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "product_id", nullable = false)
+    private Product product;
 
 }

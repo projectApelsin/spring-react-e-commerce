@@ -33,8 +33,6 @@ public class LocalUser {
     @Column(name = "last_name", nullable = false)
     private String lastName;
 
-
-
     @JsonIgnore
     @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE, orphanRemoval = true)
     private List<Address> addresses = new ArrayList<>();
@@ -46,5 +44,9 @@ public class LocalUser {
 
     @Column(name = "email_verified", nullable = false)
     private Boolean emailVerified = false;
+
+    @OneToOne(optional = false, orphanRemoval = true)
+    @JoinColumn(name = "shopping_cart_id", nullable = false)
+    private ShoppingCart shoppingCart;
 
 }

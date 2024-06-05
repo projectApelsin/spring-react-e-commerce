@@ -12,15 +12,18 @@ public class LoginResponse {
 
     @Getter
     @Setter
-    @JsonProperty("refresh_token")
-    private String refreshToken;
-
-    @Getter
-    @Setter
     private boolean success;
 
     @Getter
     @Setter
     private String failureReason;
+
+    @Getter
+    @Setter
+    private Long userId;
+
+    @Getter
+    @Setter
+    private Long cartId;
 
 }

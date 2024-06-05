@@ -1,9 +1,8 @@
-/*package com.dreamsdestroyer.CourseWork.api.controller.product;
+package com.dreamsdestroyer.coursework.api.controller.product;
 
-import com.dreamsdestroyer.CourseWork.model.Category;
-import com.dreamsdestroyer.CourseWork.model.LocalUser;
-import com.dreamsdestroyer.CourseWork.model.Product;
-import com.dreamsdestroyer.CourseWork.service.ProductService;
+
+import com.dreamsdestroyer.coursework.model.Product;
+import com.dreamsdestroyer.coursework.service.ProductService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin("*")
+@CrossOrigin(origins = "http://localhost")
 @RestController
 @RequestMapping("/product")
 public class ProductController {
@@ -24,14 +23,13 @@ public class ProductController {
     }
 
     @GetMapping("/all-products")
-    public ResponseEntity<List<Product>> getProducts(){
+    public ResponseEntity<List<Product>> getProducts() {
         return new ResponseEntity<>(productService.getProducts(), HttpStatus.OK);
     }
 
     @GetMapping("/getProductById")
-    public ResponseEntity<Product> getProductById(Long id){
-        return new ResponseEntity<>(productService.getProductById(id),HttpStatus.OK);
+    public ResponseEntity<Product> getProductById(Long id) {
+        return new ResponseEntity<>(productService.getProductById(id), HttpStatus.OK);
     }
 
 }
-*/

@@ -1,16 +1,17 @@
-/*package com.dreamsdestroyer.CourseWork.api.controller.address;
+package com.dreamsdestroyer.coursework.api.controller.address;
 
-import com.dreamsdestroyer.CourseWork.api.model.AddressRequest;
-import com.dreamsdestroyer.CourseWork.exception.ResourceNotFoundException;
-import com.dreamsdestroyer.CourseWork.model.Address;
-import com.dreamsdestroyer.CourseWork.model.LocalUser;
-import com.dreamsdestroyer.CourseWork.model.repository.LocalUserRepository;
-import com.dreamsdestroyer.CourseWork.service.AddressService;
+
+import com.dreamsdestroyer.coursework.api.model.AddressRequest;
+import com.dreamsdestroyer.coursework.exception.ResourceNotFoundException;
+import com.dreamsdestroyer.coursework.model.Address;
+import com.dreamsdestroyer.coursework.model.LocalUser;
+import com.dreamsdestroyer.coursework.model.repository.LocalUserRepository;
+import com.dreamsdestroyer.coursework.service.AddressService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-@CrossOrigin("*")
+@CrossOrigin(origins = "http://localhost")
 @RestController
 @RequestMapping("/address")
 public class AddressController {
@@ -39,4 +40,3 @@ public class AddressController {
         return ResponseEntity.status(HttpStatus.CREATED).body(savedAddress);
     }
 }
-*/

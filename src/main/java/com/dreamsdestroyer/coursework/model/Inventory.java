@@ -21,5 +21,11 @@ public class Inventory {
     @Column(name = "quantity", nullable = false)
     private Integer quantity;
 
-
+    public String decreaseQuantity(int quantity) {
+        if (this.quantity - quantity > 0) {
+            this.quantity -= quantity;
+            return "Success";
+        }
+        return "Failed. Not enough products";
+    }
 }

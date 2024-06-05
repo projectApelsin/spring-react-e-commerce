@@ -1,14 +1,15 @@
 package com.dreamsdestroyer.CourseWork.service;
 
 
-
 import com.dreamsdestroyer.coursework.api.model.LoginBody;
 import com.dreamsdestroyer.coursework.api.model.RegistrationBody;
 import com.dreamsdestroyer.coursework.exception.UserAlreadyExistsException;
 import com.dreamsdestroyer.coursework.exception.UserNotVerifiedException;
 import com.dreamsdestroyer.coursework.model.LocalUser;
+import com.dreamsdestroyer.coursework.model.ShoppingCart;
 import com.dreamsdestroyer.coursework.model.VerificationToken;
 import com.dreamsdestroyer.coursework.model.repository.LocalUserRepository;
+import com.dreamsdestroyer.coursework.model.repository.ShoppingCartRepository;
 import com.dreamsdestroyer.coursework.model.repository.VerificationTokenRepository;
 import com.dreamsdestroyer.coursework.service.EmailService;
 import com.dreamsdestroyer.coursework.service.EncryptionService;
@@ -28,15 +29,18 @@ public class UserService {
     private EncryptionService encryptionService;
     private JWTService jwtService;
     private EmailService emailService;
+    private final ShoppingCartRepository shoppingCartRepository;
 
 
     public UserService(LocalUserRepository localUserDAO, VerificationTokenRepository verificationTokenRepository,
-                       EncryptionService encryptionService, JWTService jwtService, EmailService emailService) {
+                       EncryptionService encryptionService, JWTService jwtService, EmailService emailService,
+                       ShoppingCartRepository shoppingCartRepository) {
         this.localUserRepository = localUserDAO;
         this.verificationTokenRepository = verificationTokenRepository;
         this.encryptionService = encryptionService;
         this.jwtService = jwtService;
         this.emailService = emailService;
+        this.shoppingCartRepository = shoppingCartRepository;
     }
 
 
@@ -51,8 +55,12 @@ public class UserService {
         user.setFirstName(registrationBody.getFirstName());
         user.setLastName(registrationBody.getLastName());
         user.setPassword(encryptionService.encryptPassword(registrationBody.getPassword()));
+        ShoppingCart shoppingCart = new ShoppingCart();
+        shoppingCart.setLocalUser(user);
+        user.setShoppingCart(shoppingCart);
         VerificationToken verificationToken = createVerificationToken(user);
         emailService.sendVerificationEmail(verificationToken);
+        shoppingCartRepository.save(shoppingCart);
         return localUserRepository.save(user);
     }
 
@@ -106,5 +114,10 @@ public class UserService {
         }
         return false;
     }
+
+    public LocalUser getUserDetails(LoginBody loginBody) {
+        return localUserRepository.findByUsername(loginBody.getUsername()).get();
+    }
+
 }
 

@@ -26,7 +26,7 @@ public class PurchaseOrder {
     private Address address;
 
 
-    @OneToMany(mappedBy = "purchaseOrder", cascade = CascadeType.REMOVE, orphanRemoval = true)
+    @OneToMany(mappedBy = "purchaseOrder")
     private List<PurchaseOrderQuantities> quantities = new ArrayList<>();
 
 }

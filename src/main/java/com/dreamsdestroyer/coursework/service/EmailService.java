@@ -21,13 +21,13 @@ public class EmailService {
         this.javaMailSender = javaMailSender;
     }
 
-    private SimpleMailMessage makeMailMessage(){
+    private SimpleMailMessage makeMailMessage() {
         SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
         simpleMailMessage.setFrom(fromAddress);
         return simpleMailMessage;
     }
 
-    public void sendVerificationEmail(VerificationToken verificationToken){
+    public void sendVerificationEmail(VerificationToken verificationToken) {
         SimpleMailMessage message = makeMailMessage();
         message.setTo(verificationToken.getUser().getEmail());
         message.setSubject("Verify your email to active your account.");
