@@ -1,4 +1,4 @@
-package com.dreamsdestroyer.CourseWork.service;
+package com.dreamsdestroyer.coursework.service;
 
 
 import com.dreamsdestroyer.coursework.api.model.LoginBody;

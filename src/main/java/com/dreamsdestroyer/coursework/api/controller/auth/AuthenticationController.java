@@ -1,7 +1,7 @@
 package com.dreamsdestroyer.coursework.api.controller.auth;
 
 
-import com.dreamsdestroyer.CourseWork.service.UserService;
+import com.dreamsdestroyer.coursework.service.UserService;
 import com.dreamsdestroyer.coursework.api.model.LoginBody;
 import com.dreamsdestroyer.coursework.api.model.LoginResponse;
 import com.dreamsdestroyer.coursework.api.model.RegistrationBody;
@@ -24,7 +24,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/auth")
 public class AuthenticationController {
 
-    private UserService userService;
+    private final UserService userService;
 
     @Autowired
     public AuthenticationController(UserService userService) {
