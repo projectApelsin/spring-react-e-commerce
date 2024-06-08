@@ -23,7 +23,7 @@ public class WebSecurityConfig {
         http.csrf(csrf -> csrf.disable());
         http.addFilterBefore(jwtRequestFilter, AuthorizationFilter.class);
         http.authorizeHttpRequests(authorizationManagerRequestMatcherRegistry -> authorizationManagerRequestMatcherRegistry
-                .requestMatchers("/auth/register", "/auth/login", "/auth/verify", "category/getProductsById",
+                .requestMatchers("/auth/register", "/auth/login", "auth/refresh", "auth/verify", "category/getProductsById",
                         "product/all-products", "product/getProductById").permitAll()
                 .anyRequest().authenticated());
         return http.build();

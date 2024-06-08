@@ -70,7 +70,7 @@ const ProductDetailComponent = () => {
                     className="add-to-cart-button" 
                     onClick={() => handleAddToCart(product.id)}
                 >
-                    <FaShoppingCart /> Добавить в корзину
+                    <FaShoppingCart /> Додати в кошик
                 </button>
             </div>
         </div>

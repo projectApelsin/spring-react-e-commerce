@@ -9,38 +9,38 @@ function FooterComponent() {
                 <div className="container">
                     <div className="row">
                         <div className="col-md-3 col-6">
-                            <h4>О магазине</h4>
+                            <h4>Про магазин</h4>
                             <ul className="list-unstyled">
-                                <li><a href="#">О нас</a></li>
+                                <li><a href="#">Про нас</a></li>
                                 <li><a href="#">Команда</a></li>
-                                <li><a href="#">Сертификаты</a></li>
+                                <li><a href="#">Сертифікати</a></li>
                             </ul>
                         </div>
 
                         <div className="col-md-3 col-6">
-                            <h4>Контакты</h4>
+                            <h4>Контакти</h4>
                             <ul className="list-unstyled">
-                                <li>Адрес: ул. Примерная, 123</li>
+                                <li>Адреса: вул. Примірна, 123</li>
                                 <li>Телефон: +1 234 567 890</li>
                                 <li>Email: info@compshop.com</li>
                             </ul>
                         </div>
 
                         <div className="col-md-3 col-6">
-                            <h4>Поддержка</h4>
+                            <h4>Підтримка</h4>
                             <ul className="list-unstyled">
-                                <li><a href="#">Служба поддержки</a></li>
-                                <li><a href="#">Возвраты и обмен</a></li>
-                                <li><a href="#">Гарантии</a></li>
+                                <li><a href="#">Служба підтримки</a></li>
+                                <li><a href="#">Повернення та обмін</a></li>
+                                <li><a href="#">Гарантії</a></li>
                             </ul>
                         </div>
 
                         <div className="col-md-3 col-6">
                             <h4>Каталог</h4>
                             <ul className="list-unstyled">
-                                <li><Link to="/category/1">Ноутбуки</Link></li>
-                                <li><Link to="/category/2">Смартфоны</Link></li>
-                                <li><Link to="/category/3">Аксессуары</Link></li>
+                                <li><Link to="/category/1">Комплектуючі</Link></li>
+                                <li><Link to="/category/2">Монітори</Link></li>
+                                <li><Link to="/category/3">Корпус для ПК</Link></li>
                             </ul>
                         </div>
                     </div>

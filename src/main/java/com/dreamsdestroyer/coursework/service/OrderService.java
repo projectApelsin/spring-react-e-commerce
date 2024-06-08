@@ -23,11 +23,13 @@ public class OrderService {
     private PurchaseOrderQuantitiesRepository purchaseOrderQuantitiesRepository;
     private final ShoppingCartRepository shoppingCartRepository;
     private final InventoryRepository inventoryRepository;
+    private final ShoppingCartItemRepository shoppingCartItemRepository;
 
 
     public OrderService(PurchaseOrderRepository purchaseOrderRepository, LocalUserRepository localUserRepository, AddressRepository addressRepository, ProductRepository productRepository, PurchaseOrderQuantitiesRepository purchaseOrderQuantitiesRepository,
                         ShoppingCartRepository shoppingCartRepository,
-                        InventoryRepository inventoryRepository) {
+                        InventoryRepository inventoryRepository,
+                        ShoppingCartItemRepository shoppingCartItemRepository) {
         this.purchaseOrderRepository = purchaseOrderRepository;
         this.localUserRepository = localUserRepository;
         this.addressRepository = addressRepository;
@@ -35,6 +37,7 @@ public class OrderService {
         this.purchaseOrderQuantitiesRepository = purchaseOrderQuantitiesRepository;
         this.shoppingCartRepository = shoppingCartRepository;
         this.inventoryRepository = inventoryRepository;
+        this.shoppingCartItemRepository = shoppingCartItemRepository;
     }
 
     public List<PurchaseOrder> getOrders(Long id){
@@ -86,7 +89,7 @@ public class OrderService {
         purchaseOrderQuantitiesRepository.saveAll(quantities);
 
         // Clear the shopping cart and save it
-        shoppingCart.getShoppingCartItems().clear();
+        shoppingCartItemRepository.deleteAll(shoppingCart.getShoppingCartItems());
         shoppingCartRepository.save(shoppingCart);
 
         // Set the quantities in the purchase order and return it

@@ -12,11 +12,11 @@ const  SuccessOrderComponent = () => {
     return (
         <div className="order-confirmation">
             <div className="order-confirmation-content">
-                <h2>Спасибо, что пользуетесь нашим магазином!</h2>
-                <p>Ваш заказ успешно сформирован.</p>
+                <h2>Дякуємо, що користуєтеся нашим магазином!</h2>
+                <p>Ваше замовлення успішно сформовано.</p>
                 <img src="/images/thank-you.jpg" alt="Thank You" className="thank-you-image" />
                 <button className="back-to-shop-button" onClick={handleBackToShop}>
-                    Вернуться к покупкам
+                Повернутися до покупок
                 </button>
             </div>
         </div>

@@ -23,8 +23,8 @@ const HomePage = () => {
     return (
         <div className="homepage">
             <header className="header">
-                <h1>Добро пожаловать в наш магазин!</h1>
-                <p>Здесь вы найдете лучшие продукты по отличным ценам</p>
+                <h1>Ласкаво просимо в наш магазин!</h1>
+                <p>Тут ви знайдете найкращі продукти за чудовими цінами</p>
             </header>
 
             <div className="banner">
@@ -32,7 +32,7 @@ const HomePage = () => {
             </div>
 
             <section className="featured-products">
-                <h2>Рекомендуемые товары</h2>
+                <h2>Рекомендовані товари</h2>
                 <div className="productGroup">
                     {products.map(product => (
                         <ProductCard key={product.id} product={product} />

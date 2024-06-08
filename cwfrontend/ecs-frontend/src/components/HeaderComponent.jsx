@@ -39,7 +39,7 @@ const HeaderComponent = () => {
           </ul>
           
           <button type="button" className="btn btn-success" onClick={handleProfileClick}>
-            <i className="bi bi-people"></i> Профиль
+            <i className="bi bi-people"></i> Профіль
           </button>
         </div>
       </div>

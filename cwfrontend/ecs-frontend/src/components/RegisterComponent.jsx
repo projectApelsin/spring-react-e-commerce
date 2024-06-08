@@ -50,10 +50,10 @@ const RegisterComponent = () => {
         <div className="container mt-5 mb-5">
             <div className="row justify-content-center">
                 <div className="col-10 col-lg-4 col-md-6">
-                    <h2 className="mb-5 text-center main-text">Регистрация</h2>
+                    <h2 className="mb-5 text-center main-text">Реєстрація</h2>
                     <form onSubmit={handleSubmit}>
                         <div className="mb-3">
-                            <label htmlFor="username" className="form-label">Имя пользователя</label>
+                            <label htmlFor="username" className="form-label">Ім'я користувача</label>
                             <input
                                 type="text"
                                 className="form-control"
@@ -77,7 +77,7 @@ const RegisterComponent = () => {
                             />
                         </div>
                         <div className="mb-3">
-                            <label htmlFor="firstName" className="form-label">Имя</label>
+                            <label htmlFor="firstName" className="form-label">Ім'я</label>
                             <input
                                 type="text"
                                 className="form-control"
@@ -89,7 +89,7 @@ const RegisterComponent = () => {
                             />
                         </div>
                         <div className="mb-3">
-                            <label htmlFor="lastName" className="form-label">Фамилия</label>
+                            <label htmlFor="lastName" className="form-label">Прізвище</label>
                             <input
                                 type="text"
                                 className="form-control"
@@ -112,11 +112,11 @@ const RegisterComponent = () => {
                                 required
                             />
                             <small id="passwordHelp" className="form-text text-muted">
-                                Пароль должен содержать не менее 8 символов.
+                            Пароль має містити щонайменше 8 символів.
                             </small>
                         </div>
                         <div className="mb-3">
-                            <label htmlFor="confirmPassword" className="form-label">Подтвердите пароль</label>
+                            <label htmlFor="confirmPassword" className="form-label">Підтвердіть пароль</label>
                             <input
                                 type="password"
                                 className="form-control"
@@ -129,10 +129,10 @@ const RegisterComponent = () => {
                         </div>
                         <div className="mb-3 form-check">
                             <input type="checkbox" className="form-check-input" id="agreeTerms" required />
-                            <label className="form-check-label" htmlFor="agreeTerms">Я соглашаюсь с <a href="#" className="text-dark">условиями использования</a></label>
+                            <label className="form-check-label" htmlFor="agreeTerms">Я погоджуюся з <a href="#" className="text-dark">умовами використання</a></label>
                         </div>
                         <div className="text-center">
-                            <button type="submit" className="btn btn-success">Зарегистрироваться</button>
+                            <button type="submit" className="btn btn-success">Зареєструватися</button>
                         </div>
                     </form>
                 </div>

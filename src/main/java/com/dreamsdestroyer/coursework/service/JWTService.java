@@ -41,7 +41,6 @@ public class JWTService {
 
     private static final String USERNAME_KEY = "USERNAME";
     private static final String VERIFICATION_EMAIL_KEY = "VERIFICATION_EMAIL";
-    private static final String RESET_PASSWORD_EMAIL_KEY = "RESET_PASSWORD_EMAIL";
 
 
     @PostConstruct

@@ -100,9 +100,9 @@ const Cart = () => {
 
     return (
         <div className="cart">
-            <h2>Корзина</h2>
+            <h2>Кошик</h2>
             {cartItems.length === 0 ? (
-                <p>Ваша корзина пуста.</p>
+                <p>Ваш кошик порожній.</p>
             ) : (
                 <>
                     {cartItems.map(item => (
@@ -119,13 +119,13 @@ const Cart = () => {
                                 value={item.quantity}
                                 onChange={(e) => handleQuantityChange(item.id, e.target.value)}
                             />
-                            <button className="cart-item-remove" onClick={() => handleRemoveItem(item.id)}>Удалить</button>
+                            <button className="cart-item-remove" onClick={() => handleRemoveItem(item.id)}>Видалити</button>
                         </div>
                     ))}
                     <div className="cart-total">
-                        <h3>Общая сумма: {orderTotal.toFixed(2)}$</h3>
+                        <h3>Загальна сума: {orderTotal.toFixed(2)}$</h3>
                     </div>
-                    <button className="checkout-button" onClick={handleCheckout}>Оформить заказ</button>
+                    <button className="checkout-button" onClick={handleCheckout}>Оформити замовлення</button>
                 </>
             )}
         </div>
